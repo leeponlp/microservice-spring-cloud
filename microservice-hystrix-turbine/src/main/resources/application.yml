@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: microservice-hystrix-turbine
+server:
+  port: 9091
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+
+turbine:
+  aggregator:
+    clusterConfig: MICROSERVICE-FALLBACK-WITH-FEIGN
+  appConfig: microservice-fallback-with-feign
+  clusterNameExpression: "'default'"
+
+#http://localhost:9091/turbine.stream?cluster=MICROSERVICE-FALLBACK-WITH-FEIGN
+
+logging:
+  level:
+    root: INFO
+    org.hibernate: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+    com.leepon.cloud: DEBUG
