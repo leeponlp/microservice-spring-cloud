@@ -18,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
  */
 
 @RestController
-@RequestMapping("/movie")
+@RequestMapping("/demo")
 public class DemoController {
 
     @Autowired
@@ -28,7 +28,7 @@ public class DemoController {
     @GetMapping("/{id}")
     @HystrixCommand(fallbackMethod = "findByIdFallback")
     public User findById(@PathVariable Integer id) {
-        return this.restTemplate.getForObject("http://microservice--user/user/" + id, User.class);
+        return this.restTemplate.getForObject("http://microservice-user/user/" + id, User.class);
     }
 
     public User findByIdFallback(Integer id) {

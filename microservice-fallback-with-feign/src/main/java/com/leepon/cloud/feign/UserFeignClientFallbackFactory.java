@@ -17,7 +17,7 @@ public class UserFeignClientFallbackFactory implements FallbackFactory<UserFeign
 
     @Override
     public UserFeignClient create(Throwable throwable) {
-        log.error("服务调用失败：{}",throwable.getStackTrace());
+        log.error("服务调用失败：{}",throwable);
         return id -> {
             User user = new User();
             user.setId(0);

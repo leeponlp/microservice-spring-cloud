@@ -3,8 +3,8 @@ spring:
     name: microservice-fallback-with-feign
 eureka:
   client:
-    fetch-registry: false
-    register-with-eureka: false
+    fetch-registry: true
+    register-with-eureka: true
     healthcheck:
       enabled: true
     serviceUrl:
@@ -27,7 +27,3 @@ hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 5000
 # 超时的issue：https://github.com/spring-cloud/spring-cloud-netflix/issues/768
 # 超时的解决方案： http://stackoverflow.com/questions/27375557/hystrix-command-fails-with-timed-out-and-no-fallback-available
 # hystrix配置： https://github.com/Netflix/Hystrix/wiki/Configuration#execution.isolation.thread.timeoutInMilliseconds
-
-
-ocr:
-  url: http://12276-labs-image-za-tech-invoice-ocr.test.za.net

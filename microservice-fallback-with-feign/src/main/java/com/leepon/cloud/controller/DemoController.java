@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/demo")
 public class DemoController {
 
   @Autowired
