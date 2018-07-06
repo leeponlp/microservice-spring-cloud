@@ -19,6 +19,8 @@
         <module>microservice-hystrix-turbine</module>
         <module>microservice-jwt</module>
         <module>microservice-retrofit</module>
+		<module>microservice-retry</module>
+		<module>microservice-ribbon-retry</module>
 
 
 
