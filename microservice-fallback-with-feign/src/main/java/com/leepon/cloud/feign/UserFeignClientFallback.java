@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * @author leepon
  */
 @Component
-public class HystrixClientFallback implements UserFeignClient {
+public class UserFeignClientFallback implements UserFeignClient {
 
   @Override
   public User findById(Integer id) {
