@@ -2,6 +2,7 @@ package com.leepon.cloud.controller;
 
 import com.leepon.cloud.annotation.EncryptField;
 import com.leepon.cloud.repository.UserRepository;
+import com.leepon.cloud.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,22 +17,21 @@ import java.util.Map;
 
 @Slf4j
 @RestController
-@RequestMapping("/user")
-public class UserController {
+public class UserController implements IUserService {
 
   @Autowired
   private UserRepository userRepository;
 
 
   @EncryptField(includes = {"username"})
-  @RequestMapping("/{id}")
+  @Override
   public User findById(@PathVariable Integer id) {
     log.info("=====访问UserApp=====");
     return userRepository.findOne(id);
   }
 
 
-  @RequestMapping("/list")
+  @Override
   public List<User> findUserAll() {
 
     return userRepository.findAll();

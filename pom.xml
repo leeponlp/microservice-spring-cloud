@@ -11,6 +11,7 @@
 	<modules>
 		<module>microservice-user</module>
 		<module>microservice-user-copy</module>
+		<module>microservice-user-share</module>
 		<module>microservice-fallback-with-feign</module>
 		<module>microservice-fallback-with-hystrix</module>
 		<module>microservice-eureka</module>
