@@ -2,6 +2,7 @@ package com.leepon.cloud.controller;
 
 import com.leepon.cloud.annotation.EncryptField;
 import com.leepon.cloud.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -24,7 +26,7 @@ public class UserController {
   @EncryptField(includes = {"username"})
   @RequestMapping("/{id}")
   public User findById(@PathVariable Integer id) {
-    int i = 1/0;
+    log.info("=====访问UserApp=====");
     return userRepository.findOne(id);
   }
 

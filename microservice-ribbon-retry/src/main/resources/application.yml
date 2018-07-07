@@ -1,6 +1,10 @@
 spring:
   application:
-    name: microservice-fallback-with-feign
+    name: microservice-ribbon-retry
+  cloud:
+      loadbalancer:
+        retry:
+          enabled: true  #启动重试机制
 eureka:
   client:
     fetch-registry: true
@@ -17,13 +21,18 @@ logging:
 
 feign:
   hystrix:
-    enabled: true
-# 解决第一次请求报超时异常的方案：
-hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 5000
-# 或者：
-# hystrix.command.default.execution.timeout.enabled: false
-# 或者：
+    enabled: false
 
-# 超时的issue：https://github.com/spring-cloud/spring-cloud-netflix/issues/768
-# 超时的解决方案： http://stackoverflow.com/questions/27375557/hystrix-command-fails-with-timed-out-and-no-fallback-available
-# hystrix配置： https://github.com/Netflix/Hystrix/wiki/Configuration#execution.isolation.thread.timeoutInMilliseconds
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 10000
+
+retry:
+  connect-timeout: 1000
+  connection-request-timeout: 1000
+  read-timeout: 3000
+
+
+microservice-user:
+  ribbon:
+    OkToRetryOnAllOperations: true # 是否对所有请求都进行重试
+    MaxAutoRetriesNextServer: 2   #重试切换实例次数
+    MaxAutoRetries: 1     #重试次数
