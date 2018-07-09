@@ -17,12 +17,15 @@ public class DemoController {
   @Autowired
   private IOuterUserService outerUserService;
 
+//  @Autowired
+//  private UserFeignClient   userFeignClient;
 
     @GetMapping("/{id}")
     public User findById(@PathVariable Integer id) {
       User user = outerUserService.findById(id);
       return user;
   }
+
 
 
 }

@@ -2,9 +2,9 @@ spring:
   application:
     name: microservice-ribbon-retry
   cloud:
-      loadbalancer:
-        retry:
-          enabled: true  #启动重试机制
+    loadbalancer:
+      retry:
+        enabled: true  #启动重试机制
 eureka:
   client:
     fetch-registry: true

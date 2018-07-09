@@ -2,7 +2,7 @@ package com.leepon.cloud.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.leepon.cloud.entity.User;
-import com.leepon.cloud.feign.UserFeignClient;
+import com.leepon.cloud.feign.IOuterUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class DemoController {
 
   @Autowired
-  private UserFeignClient userFeignClient;
+  private IOuterUserService outerUserService;
 
 
     @GetMapping("/{id}")
     public User findById(@PathVariable Integer id) {
-      User user = userFeignClient.findById(id);
+      User user = outerUserService.findById(id);
       log.info("RPC调用返回：{}",JSON.toJSONString(user));
       return user;
   }

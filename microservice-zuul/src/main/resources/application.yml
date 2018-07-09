@@ -1,6 +1,10 @@
 spring:
   application:
     name: microservice-zuul
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true  #启动重试机制
 server:
   port: 8080
 eureka:
@@ -15,14 +19,22 @@ eureka:
 zuul:
   ignoredServices: "*"
   routes:
-    MICROSERVICE-PRODUCT: /v1/product/**
-    MICROSERVICE-USER : /v1/user/**
+    MICROSERVICE-USER : /v1/**
+
+feign:
+  hystrix:
+    enabled: false
 
 microservice-user:
   ribbon:
     NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
-    listOfServers: http://localhost:7900,http://localhost:7901
+    listOfServers: http://localhost:8000,http://localhost:8001
+#    OkToRetryOnAllOperations: true # 是否对所有请求都进行重试
+#    MaxAutoRetriesNextServer: 2   #重试切换实例次数
+#    MaxAutoRetries: 1     #重试次数
+#    ConnectTimeout: 1000
+#    ReadTimeout: 3000
 
 
 logging:

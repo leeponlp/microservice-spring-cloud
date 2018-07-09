@@ -20,8 +20,13 @@ public class FooConfiguration {
             .encoder(new JacksonEncoder())
             .decoder(new JacksonDecoder())
             .options(new Request.Options(1000, 3500))
-            .retryer(new Retryer.Default(5000, 5000, 3));
+            .retryer(retryer());
 
+  }
+
+  @Bean
+  Retryer retryer() {
+    return Retryer.NEVER_RETRY;
   }
 
   @Bean
