@@ -2,6 +2,8 @@ package com.leepon.cloud.feign;
 
 import com.leepon.cloud.entity.User;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import java.util.List;
  * @author leepon
  */
 @Component
+@RequestMapping("/fallback/demo")
 public class OuterUserServiceFallback implements IOuterUserService {
 
     @Override

@@ -4,7 +4,7 @@ spring:
 
 logging:
   level:
-    com.leepon.cloud.feign.UserFeignClient: DEBUG
+    com.leepon.cloud.outer.IOuterUserService: DEBUG
 
 eureka:
   client:

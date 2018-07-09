@@ -22,7 +22,7 @@ public class DemoServiceImpl implements IDemoService {
     @Autowired
     IOuterUserService outerUserService;
 
-    @Retryable(value= {Exception.class},maxAttempts = 5,backoff = @Backoff(delay = 1000,multiplier = 1))
+    @Retryable(value= {Exception.class},maxAttempts = 5,backoff = @Backoff(delay = 1000,multiplier = 2))
     @Override
     public User findById(Integer id) {
         log.info("=====RPC调用客户中心服务=====");
