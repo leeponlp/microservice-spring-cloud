@@ -22,6 +22,7 @@
         <module>microservice-retrofit</module>
 		<module>microservice-retry</module>
 		<module>microservice-ribbon-retry</module>
+		<module>microservice-qlexpression</module>
 
 
 
