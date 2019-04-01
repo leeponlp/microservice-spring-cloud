@@ -11,7 +11,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -82,7 +81,7 @@ public class JwtLoginFilter extends UsernamePasswordAuthenticationFilter {
                     .setSubject(auth.getName() + "-" + roleList)
                     .setIssuedAt(now)//签发时间
                     .setExpiration(time)//过期时间
-                    .signWith(SignatureAlgorithm.HS512, ConstantKey.SIGNING_KEY) //采用什么算法是可以自己选择的，不一定非要采用HS512
+                    .signWith(SignatureAlgorithm.HS512, ConstantKey.SIGNING_KEY)
                     .compact();
             // 登录成功后，返回token到header里面
             res.addHeader("Authorization", "Bearer " + token);
