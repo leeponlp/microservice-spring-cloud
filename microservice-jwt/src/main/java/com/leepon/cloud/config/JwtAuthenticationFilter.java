@@ -2,8 +2,10 @@ package com.leepon.cloud.config;
 
 import com.leepon.cloud.constant.ConstantKey;
 import com.leepon.cloud.service.GrantedAuthorityImpl;
+import com.leepon.cloud.util.StringTool;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -48,26 +50,29 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
         if (token == null || token.isEmpty()) {
             throw new RuntimeException("token为空");
         }
-        String user;
+        String userInfo;
         try {
-            user = Jwts.parser()
+            userInfo = Jwts.parser()
                     .setSigningKey(ConstantKey.SIGNING_KEY)
                     .parseClaimsJws(token.replace("Bearer ", ""))
                     .getBody()
                     .getSubject();
             long end = System.currentTimeMillis();
             log.info("执行时间: {}", (end - start) + " 毫秒");
-            if (user != null) {
-                String[] split = user.split("-")[1].split(",");
-                ArrayList<GrantedAuthority> authorities = new ArrayList<>();
-                for (int i=0; i < split.length; i++) {
-                    authorities.add(new GrantedAuthorityImpl(split[i]));
+            ArrayList<GrantedAuthority> authorities = new ArrayList<>();
+            if (StringUtils.isNotEmpty(userInfo)) {
+                String authorityInfo = userInfo.split("-")[1];
+                if (StringUtils.isNotEmpty(authorityInfo)) {
+                    String[] split = StringTool.clear(authorityInfo, "[", "]").split(",");
+                    for (int i = 0; i < split.length; i++) {
+                        authorities.add(new GrantedAuthorityImpl(split[i]));
+                    }
                 }
-                return new UsernamePasswordAuthenticationToken(user, null, authorities);
+                return new UsernamePasswordAuthenticationToken(userInfo, null, authorities);
             }
 
         } catch (ExpiredJwtException e) {
-            logger.error("Token已过期: {} " + e);
+            logger.error("token已过期: {} " + e);
             throw new RuntimeException("token已过期");
         } catch (UnsupportedJwtException e) {
             logger.error("token格式错误: {} " + e);
