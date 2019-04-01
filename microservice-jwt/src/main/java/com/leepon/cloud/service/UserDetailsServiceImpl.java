@@ -1,12 +1,13 @@
 package com.leepon.cloud.service;
 
-import org.springframework.security.core.userdetails.User;
+import com.leepon.cloud.dto.User;
+import com.leepon.cloud.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.Collections;
+import static java.util.Collections.emptyList;
 
 /**
  * @Description TODO
@@ -16,9 +17,17 @@ import java.util.Collections;
  */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
+
+    @Autowired
+    UserRepository userRepository;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        return new User("secret","secret",Collections.emptyList());
+        User user = userRepository.findByUsername(username);
+        if(user == null){
+            throw new UsernameNotFoundException(username);
+        }
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), emptyList());
     }
 }
