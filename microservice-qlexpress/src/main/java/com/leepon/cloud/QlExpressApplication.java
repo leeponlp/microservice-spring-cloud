@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class QlExpressionApplication {
+public class QlExpressApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(QlExpressionApplication.class, args);
+		SpringApplication.run(QlExpressApplication.class, args);
 	}
 }

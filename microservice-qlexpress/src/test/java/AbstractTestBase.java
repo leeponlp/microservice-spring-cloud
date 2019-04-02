@@ -1,4 +1,4 @@
-import com.leepon.cloud.QlExpressionApplication;
+import com.leepon.cloud.QlExpressApplication;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -11,7 +11,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
  * @Version 1.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = QlExpressionApplication.class)
+@SpringBootTest(classes = QlExpressApplication.class)
 @WebAppConfiguration
 public class AbstractTestBase {
 }
