@@ -58,7 +58,7 @@ public class MyResponseBodyAdvice implements ResponseBodyAdvice {
     }
 
     /**
-     * 处理返回值是单个enity对象
+     * 处理返回值是单个entity对象
      *
      * @param o
      * @return
