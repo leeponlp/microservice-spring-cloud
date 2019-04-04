@@ -11,6 +11,10 @@ import org.junit.Test;
 public class HelloWorldTest {
 
 
+    /**
+     * hello world
+     * @throws Exception
+     */
     @Test
     public void helloTest()throws Exception{
         ExpressRunner runner = new ExpressRunner();
@@ -21,5 +25,37 @@ public class HelloWorldTest {
         Object r = runner.execute(express, context, null, true, false);
         System.err.println("result:"+r);
 
+    }
+
+    /**
+     * 循环
+     * @throws Exception
+     */
+    @Test
+    public void loopTest()throws Exception{
+
+        String express = "\n" +
+                "        int sum = 0;\n" +
+                "        for (int i = 1;i<=10;i++){\n" +
+                "           sum = sum+i;\n" +
+                "        }\n" +
+                "        return sum;";
+        ExpressRunner runner = new ExpressRunner();
+        DefaultContext<String,Object> context = new DefaultContext<>();
+        Object o = runner.execute(express, context, null, true, false);
+        System.err.println("result:"+o);
+    }
+
+    /**
+     * 不支持三目运算
+     * @throws Exception
+     */
+    @Test
+    public void threeMeshTest() throws Exception {
+        String express = "int a=1,b=2,max=0;return max = a>b?a:b;";
+        ExpressRunner runner = new ExpressRunner();
+        DefaultContext<String, Object> context = new DefaultContext<>();
+        Object o = runner.execute(express, context, null, true, false);
+        System.err.println("result:"+o);
     }
 }
