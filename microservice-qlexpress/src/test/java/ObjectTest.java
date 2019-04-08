@@ -85,4 +85,38 @@ public class ObjectTest {
         Object o = runner.execute(express,context,null,true,false);
         System.err.println("result: "+o);
     }
+
+    /**
+     * 自定义脚本函数
+     * @throws Exception
+     */
+    @Test
+    public void test6()throws Exception{
+
+        String express = "function add(int a,int b){ return a+b};" +
+                "function sub(int a,int b){return a-b};" +
+                "int a= 10;int b = 9;" +
+                "return add(a,b)+sub(a,b);";
+
+        ExpressRunner runner = new ExpressRunner();
+        DefaultContext<String,Object> context = new DefaultContext<>();
+        Object o = runner.execute(express, context, null, true, false);
+        System.err.println("result: "+o);
+    }
+
+    /**
+     * 替换关键字
+     * @throws Exception
+     */
+    @Test
+    public void test7()throws Exception{
+        String express = "如果(2>1){return true;}否则{return false;}";
+        ExpressRunner runner = new ExpressRunner();
+        runner.addOperatorWithAlias("如果","if",null);
+        runner.addOperatorWithAlias("否则","else",null);
+        DefaultContext<String,Object> context = new DefaultContext<>();
+        Object o = runner.execute(express, context, null, true, false);
+        System.err.println("result: "+o);
+
+    }
 }
