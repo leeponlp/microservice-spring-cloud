@@ -1,10 +1,5 @@
 package com.suxiaocheng.framework.xss;
 
-/**
- * 类 XssFilterAutoConfig 的实现描述：xss配置类
- *
- * @author za-qilifan001 2019/11/22 16:26
- */
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

@@ -23,7 +23,7 @@ public @interface RequestFieldValidate {
     String message() default "";
 
     /**
-     * 验证是kaku具体规则Key
+     * 规则Key
      *
      * @return
      */

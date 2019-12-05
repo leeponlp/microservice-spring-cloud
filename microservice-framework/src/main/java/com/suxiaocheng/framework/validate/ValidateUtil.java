@@ -10,11 +10,6 @@ import javax.validation.ValidationException;
 import javax.validation.Validator;
 import java.util.Set;
 
-/**
- * 类 ValidateDtoContexUtil 的实现描述：校验DTO
- *
- * @author za-qilifan001 2019/11/25 21:38
- */
 @Component
 @Slf4j
 public class ValidateUtil {
