@@ -1,6 +1,7 @@
 package com.leepon.cloud.advice;
 
 import com.leepon.cloud.util.Helper;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpHeaders;
@@ -16,6 +17,7 @@ import java.lang.reflect.Type;
 /**
  * Created by leepon on 17/4/17.
  */
+@Slf4j
 @ControllerAdvice(basePackages = "com.leepon.cloud.controller")
 public class MyRequestBodyAdvice implements RequestBodyAdvice {
 
@@ -54,6 +56,7 @@ public class MyRequestBodyAdvice implements RequestBodyAdvice {
             this.headers = inputMessage.getHeaders();
             String encryptInfo = IOUtils.toString(inputMessage.getBody(), "UTF-8");
             String decryptInfo = Helper.decode(encryptInfo);
+            log.info("入参解密：{}",decryptInfo);
             this.body = IOUtils.toInputStream(decryptInfo,"UTF-8");
         }
 

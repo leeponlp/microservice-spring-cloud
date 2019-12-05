@@ -20,12 +20,11 @@ public class UserController {
   @Autowired
   private UserRepository userRepository;
 
-
-  @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-  @EncryptField(includes = {"username"})
-  public User findById(@PathVariable Integer id) {
+  @RequestMapping(value = "/findUserById",method = RequestMethod.GET)
+  @EncryptField(includes = {"username"},encrypt = false)
+  public User findUserById(Integer userId) {
     log.info("=====访问UserApp=====");
-    return userRepository.findOne(id);
+    return userRepository.findOne(userId);
   }
 
 
