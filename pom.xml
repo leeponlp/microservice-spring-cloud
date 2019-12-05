@@ -23,6 +23,8 @@
 		<module>microservice-retry</module>
 		<module>microservice-ribbon-retry</module>
 		<module>microservice-qlexpress</module>
+		<module>microservice-activiti</module>
+		<module>microservice-framework</module>
 
 
 
