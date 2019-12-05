@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
-
 package com.suxiaocheng.framework.xss;
 
 import lombok.extern.slf4j.Slf4j;
