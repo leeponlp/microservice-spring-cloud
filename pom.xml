@@ -25,7 +25,7 @@
 		<module>microservice-qlexpress</module>
 		<module>microservice-activiti</module>
 		<module>microservice-framework</module>
-		<module>microservice-produce-consume</module>
+		<!--<module>microservice-produce-consume</module>-->
 
 
 
